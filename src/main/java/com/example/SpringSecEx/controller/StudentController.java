@@ -17,10 +17,12 @@ public class StudentController {
             new Student(1, "Alice", 85),
             new Student(2, "Bob", 90)
     ));
+
     @GetMapping("/students")
     public List<Student> getStudents() {
         return students;
     }
+
     @GetMapping("/csrf-token")
     public CsrfToken getCsrfToken(HttpServletRequest request){
         return (CsrfToken) request.getAttribute("_csrf");
@@ -30,5 +32,11 @@ public class StudentController {
     public Student addStudent(@RequestBody Student student){
         students.add(student);
         return student;
+    }
+
+    @GetMapping("/healthCheck")
+    public static String healthCheck() {
+        System.out.println("Service is running");
+        return "Service is running";
     }
 }
